@@ -110,14 +110,13 @@ function converse_settings_post($a,&$post) {
         if(! local_channel())
 		return;
 	
-	if(is_site_admin()){
-		if($_POST['converse-submit']) {
-			set_pconfig(local_channel(),'converse','enable',intval($_POST['converse']));
-			info( t('Converse Settings updated.') . EOL);
-			set_config('converse','bosh_path',trim($_POST['bosh_path']));
-			set_config('converse','websockets_path',trim($_POST['websockets_path']));
-		}
+	if(is_site_admin() && $_POST['converse-submit']) {
+		set_pconfig(local_channel(),'converse','enable',intval($_POST['converse']));
+		info( t('Converse Settings updated.') . EOL);
+		set_config('converse','bosh_path',trim($_POST['bosh_path']));
+		set_config('converse','websockets_path',trim($_POST['websockets_path']));
 	}
+
 
 
 }
