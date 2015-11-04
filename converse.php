@@ -30,37 +30,7 @@ function converse_content(&$a, &$b){
 		"/addon/converse/converse.min.css" .'" media="all" />';
 
 
-	$scripts = array("salsa20.js",
-			 "bigint.js",
-			 "core.js",
-			 "enc-base64.js",
-			 "md5.js",
-			 "evpkdf.js",
-			 "cipher-core.js",
-			 "aes.js",
-			 "sha1.js",
-			 "sha256.js",
-			 "hmac.js",
-			 "pad-nopadding.js",
-			 "mode-ctr.js",
-			 "eventemitter.js",
-			 "otr.js",
-			 "strophe.js",
-			 "strophe.vcard.js",
-			 "strophe.disco.js",
-			 "strophe.ping.js",
-			 "underscore.js",
-			 "backbone.js",
-			 "backbone.browserStorage.js",
-			 "backbone.overview.js",
-			 "moment-with-locales.js",
-			 "jquery.browser.js",
-			 "index.js",
-			 "jed.js",
-			 "locales.js",
-			 "templates.js",
-			 "utils.js",
-			 "converse.js",
+	$scripts = array("converse.nojquery.min.js",
 			 "chat.js");
 	
 	foreach ($scripts as $js){

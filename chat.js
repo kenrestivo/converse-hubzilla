@@ -1,4 +1,4 @@
-$(document).ready(function() {
+require(['converse'], function (converse) {
     converse.initialize({
 	bosh_service_url: 'https://hub.spaz.org:5281/http-bind/',
 	websocket_url: 'wss://hub.spaz.org:5281/websocket/',
