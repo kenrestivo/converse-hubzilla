@@ -12,8 +12,13 @@ function converse_unload(){
 
 
 function converse_content(&$a){
-    $a->page['htmlhead'] .= 
-  $a->get_baseurl()
+	$a->page['htmlhead'] .=  '<link rel="stylesheet" href="' .   
+		$a->get_baseurl() . 
+		"/addon/converse/converse.min.js" .'" media="all" />';
+    
+	$a->page['htmlhead'] .=   '<script src="' . 
+		$a->get_baseurl() . '/addon/converse/converse.min.js' .
+		'"></script>';
 }
 
 
