@@ -67,9 +67,9 @@ function converse_content(&$a, &$b){
 			  'show_controlbox_by_default' => false,
 			  'xhr_user_search' => false);
 
-	$a->page['content'] .= '<script language="javascript" type="text/javascript">var converse_settings = ' .
+	$a->page['content'] .= '<script language="javascript" type="text/javascript">var converse_settings =' .
 		json_encode($settings) .
-		'</script>';
+		';</script>';
 	// NOTE: there's no additional content necessary, the JS above loads everything needed.
 }
 
