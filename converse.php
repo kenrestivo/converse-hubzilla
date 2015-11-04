@@ -51,6 +51,25 @@ function converse_content(&$a, &$b){
 		$a->page['htmlhead'] .=   '<script src="' .  
 			$a->get_baseurl() . '/addon/converse/'. $js . '"></script>';
 	}
+
+
+	$settings = array('bosh_service_url' => $bosh_path,
+			  'websocket_url' => $websockets_path,
+			  'domain_placeholder' => 'hub.spaz.org',  // XXX fix
+			  'keepalive' =>  true,
+			  'animate' => false,
+			  'autologin' =>  false, // will be true once jid is populated, WHEN it is populated
+			  // TODO: provide jid, password, and auto-log them in (pconfig, auto-populate from db)
+			  'message_carbons' => true,
+			  'debug' =>  false, // TODO; add do config or pconfig
+			  'play_sounds' =>  true, // TODO: let the user decide (pconfig)
+			  'roster_groups' => true,
+			  'show_controlbox_by_default' => false,
+			  'xhr_user_search' => false);
+
+	$a->page['content'] .= '<script language="javascript" type="text/javascript">var converse_settings = ' .
+		json_encode($settings) .
+		'</script>';
 	// NOTE: there's no additional content necessary, the JS above loads everything needed.
 }
 
