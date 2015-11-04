@@ -63,8 +63,7 @@ function converse_settings(&$a,&$s) {
 		return;
 
 
-	$bosh_path = get_config('converse','bosh_path');
-	$websockets_path = get_config('converse','websockets_path');
+
 
 	$enabled = get_pconfig(local_channel(),'converse','enable');
    
@@ -82,18 +81,18 @@ function converse_settings(&$a,&$s) {
 
 
 	if( is_site_admin() ){
-		logger("converse am admin");
+		$bosh_path = get_config('converse','bosh_path');
 		$sc .= replace_macros(get_markup_template('field_input.tpl'), 
 				      array('$field' => array('bosh_path', 
 							      t('Path to BOSH host.'), 
 							      $bosh_path, 
-							      t('Path to BOSH host.'))));
-					      
+							      t('Full path, with http:// or https://, and /http-bind at the end'))));
+		$websockets_path = get_config('converse','websockets_path');
 		$sc .= replace_macros(get_markup_template('field_input.tpl'), 
 				      array('$field' => array('websockets_path', 
 							      t('Path to websockets host.'), 
 							      $websockets_path, 
-							      t('Path to websockets host.'))));
+							      t('Full path, with ws:// or wsss://, and websocket or whatever at the end'))));
 	}
 				      
 
@@ -115,6 +114,8 @@ function converse_settings_post($a,&$post) {
 	if($_POST['converse-submit']) {
 		set_pconfig(local_channel(),'converse','enable',intval($_POST['converse']));
 		info( t('Converse Settings updated.') . EOL);
+		set_config('converse','bosh_host',trim($_POST['bosh_host']));
+		set_config('converse','websockets_host',trim($_POST['websockets_host']));
 	}
 
 
