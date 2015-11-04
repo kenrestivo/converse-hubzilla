@@ -26,13 +26,11 @@ function converse_unload(){
 
 function converse_content(&$a, &$b){
 
-	/* 
-         * $active = get_pconfig(local_channel(), 'converse', 'enable');
-	 * 
-         * if(! $active){
-	 * 	return;
-	 * }
-         */
+	$active = get_pconfig(local_channel(), 'converse', 'enable');
+	
+        if(! $active){
+		return;
+	}
 
 
 	// head_add_js and head_add_css would be so much cleaner, but don't work here for some reason.
