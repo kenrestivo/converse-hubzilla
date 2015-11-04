@@ -82,25 +82,25 @@ function converse_settings(&$a,&$s) {
 
 	if(is_site_admin()){
 		$sc .= replace_macros(get_markup_template('field_input.tpl'), 
-				      array('$field'	=> array('bosh_path', 
-								 t('Path to BOSH host.'), 
-								 $bosh_path, 
-								 t('Path to BOSH host.'))));
+				      array('$field' => array('bosh_path', 
+							      t('Path to BOSH host.'), 
+							      $bosh_path, 
+							      t('Path to BOSH host.'))));
 					      
 		$sc .= replace_macros(get_markup_template('field_input.tpl'), 
-				      array('$field'	=> array('websockets_path', 
-								 t('Path to websockets host.'), 
-								 $websockets_path, 
-								 t('Path to websockets host.'))));
+				      array('$field' => array('websockets_path', 
+							      t('Path to websockets host.'), 
+							      $websockets_path, 
+							      t('Path to websockets host.'))));
 	}
 				      
 
 	$s .= replace_macros(get_markup_template('generic_addon_settings.tpl'), 
-			     array('$addon' 	=> array('converse',
-							 t('Converse Settings'),
-							 '', 
-							 t('Submit')),
-				   '$content'	=> $sc));
+			     array('$addon' => array('converse',
+						     t('Converse Settings'),
+						     '', 
+						     t('Submit')),
+				   '$content' => $sc));
 
 }
 
