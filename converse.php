@@ -30,8 +30,8 @@ function converse_content(&$a, &$b){
 		return;
 
 	$active = get_pconfig(local_channel(), 'converse', 'enable');
-	$bosh_path = get_config('converse','bosh_path');
-	$websockets_path = get_config('converse','websockets_path');
+	$bosh_url = get_config('converse','bosh_url');
+	$websockets_url = get_config('converse','websockets_url');
 	// TODO: add domain placeholder
 	
         if(! $active){
@@ -54,12 +54,13 @@ function converse_content(&$a, &$b){
 
 
 
+	/// ugly, but reliable
 	$a->page['content'] .= '<script language="javascript" type="text/javascript">' .
 		"require(['converse'], function (converse) {
     converse.initialize({
-	bosh_service_url: 'https://hub.spaz.org:5281/http-bind/',
-	websocket_url: 'wss://hub.spaz.org:5281/websocket/',
-	domain_placeholder: 'hub.spaz.org', 
+	bosh_service_url: '$bosh_url/',
+	websocket_url: '$websockets_url/',
+	domain_placeholder: 'hub.spaz.org', /// TODO add to settings
 	keepalive: true,
 	animate: false,
 	autologin: false, // will be true once jid is populated, WHEN it is populated
@@ -93,7 +94,7 @@ function converse_settings(&$a,&$s) {
 	$sc .= replace_macros(get_markup_template('field_checkbox.tpl'), array(
 				      '$field'	=> array('converse', 
 							 t('Enable Converse.js XMPP Chat Plugin' .
-							   is_site_admin() ? "For the ADMIN user (does not affect other users)" : ""), 
+							   is_site_admin() ? "Enable/disable for the ADMIN user (does not affect other users)" : ""), 
 							 $checked, 
 							 '', 
 							 array(t('No'),
@@ -101,17 +102,17 @@ function converse_settings(&$a,&$s) {
 
 
 	if( is_site_admin() ){
-		$bosh_path = get_config('converse','bosh_path');
+		$bosh_url = get_config('converse','bosh_url');
 		$sc .= replace_macros(get_markup_template('field_input.tpl'), 
-				      array('$field' => array('bosh_path', 
+				      array('$field' => array('bosh_url', 
 							      t('Path to BOSH host.'), 
-							      $bosh_path, 
+							      $bosh_url, 
 							      t('Full path, with http:// or https://, and /http-bind at the end'))));
-		$websockets_path = get_config('converse','websockets_path');
+		$websockets_url = get_config('converse','websockets_url');
 		$sc .= replace_macros(get_markup_template('field_input.tpl'), 
-				      array('$field' => array('websockets_path', 
+				      array('$field' => array('websockets_url', 
 							      t('Path to websockets host.'), 
-							      $websockets_path, 
+							      $websockets_url, 
 							      t('Full path, with ws:// or wsss://, and websocket or whatever at the end'))));
 	}
 				      
@@ -133,8 +134,8 @@ function converse_settings_post($a,&$post) {
 	set_pconfig(local_channel(),'converse','enable',intval($_POST['converse']));
 	
 	if(is_site_admin() && $_POST['converse-submit']) {
-		set_config('converse','bosh_path',trim($_POST['bosh_path']));
-		set_config('converse','websockets_path',trim($_POST['websockets_path']));
+		set_config('converse','bosh_url',trim($_POST['bosh_url']));
+		set_config('converse','websockets_url',trim($_POST['websockets_url']));
 		info( t('Converse Settings updated.') . EOL);
 	}
 
