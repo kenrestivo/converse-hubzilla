@@ -45,7 +45,7 @@ function converse_content(&$a, &$b){
 		"/addon/converse/converse.min.css" .'" media="all" />';
 
 
-	$scripts = array("converse.nojquery.min.js", "chat.js");
+	$scripts = array("converse.nojquery.min.js");
 	
 	foreach ($scripts as $js){
 		$a->page['htmlhead'] .=   '<script src="' .  
@@ -53,22 +53,24 @@ function converse_content(&$a, &$b){
 	}
 
 
-	$settings = array('bosh_service_url' => $bosh_path,
-			  'websocket_url' => $websockets_path,
-			  'domain_placeholder' => 'hub.spaz.org',  // XXX fix
-			  'keepalive' =>  true,
-			  'animate' => false,
-			  'autologin' =>  false, // will be true once jid is populated, WHEN it is populated
-			  // TODO: provide jid, password, and auto-log them in (pconfig, auto-populate from db)
-			  'message_carbons' => true,
-			  'debug' =>  false, // TODO; add do config or pconfig
-			  'play_sounds' =>  true, // TODO: let the user decide (pconfig)
-			  'roster_groups' => true,
-			  'show_controlbox_by_default' => false,
-			  'xhr_user_search' => false);
 
-	$a->page['content'] .= '<script language="javascript" type="text/javascript">var converse_settings =' .
-		json_encode($settings) .
+	$a->page['content'] .= '<script language="javascript" type="text/javascript">' .
+		"require(['converse'], function (converse) {
+    converse.initialize({
+	bosh_service_url: 'https://hub.spaz.org:5281/http-bind/',
+	websocket_url: 'wss://hub.spaz.org:5281/websocket/',
+	domain_placeholder: 'hub.spaz.org', 
+	keepalive: true,
+	animate: false,
+	autologin: false, // will be true once jid is populated, WHEN it is populated
+	// TODO: provide jid, password, and auto-log them in (pconfig, auto-populate from db)
+	message_carbons: true,
+	debug: false, 
+	play_sounds: true, // TODO: let the user decide (pconfig)
+	roster_groups: true,
+	show_controlbox_by_default: false,
+	xhr_user_search: false
+    })});" .
 		';</script>';
 	// NOTE: there's no additional content necessary, the JS above loads everything needed.
 }
