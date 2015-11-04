@@ -4,10 +4,10 @@ require(['converse'], function (converse) {
 	websocket_url: 'wss://hub.spaz.org:5281/websocket/',
 	keepalive: true,
 	message_carbons: true,
-	debug: true, /// not for production
+	debug: false, 
 	play_sounds: true,
 	roster_groups: true,
-	show_controlbox_by_default: true,
+	show_controlbox_by_default: false,
 	xhr_user_search: false
     })});
 
