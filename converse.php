@@ -20,7 +20,7 @@ function converse_unload(){
 }
 
 
-function converse_content(&$a){
+function converse_content(&$a, &$b){
 	$a->page['htmlhead'] .=  '<link rel="stylesheet" href="' .   
 		$a->get_baseurl() . 
 		"/addon/converse/converse.min.js" .'" media="all" />';
