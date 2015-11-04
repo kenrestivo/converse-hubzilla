@@ -60,16 +60,16 @@ function converse_content(&$a, &$b){
     converse.initialize({
 	bosh_service_url: '$bosh_url/',
 	websocket_url: '$websockets_url/',
-	domain_placeholder: 'hub.spaz.org', /// TODO add to settings
+	//domain_placeholder: '', /// TODO add to settings
 	keepalive: true,
 	animate: false,
 	autologin: false, // will be true once jid is populated, WHEN it is populated
 	// TODO: provide jid, password, and auto-log them in (pconfig, auto-populate from db)
 	message_carbons: true,
-	debug: false, 
+	debug: false,  // TODO add to settings (pconfig? config?)
 	play_sounds: true, // TODO: let the user decide (pconfig)
 	roster_groups: true,
-	show_controlbox_by_default: false,
+	show_controlbox_by_default: false, //TODO: add to pconfig
 	xhr_user_search: false
     })});" .
 		';</script>';
