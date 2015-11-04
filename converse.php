@@ -39,7 +39,7 @@ function converse_content(&$a, &$b){
 	}
 
 
-	// head_add_js and head_add_css would be so much cleaner, but don't work here for some reason.
+	// ugly. head_add_js and head_add_css would be so much cleaner, but don't work here for some reason?
 	$a->page['htmlhead'] .=  '<link rel="stylesheet" href="' .   
 		$a->get_baseurl() . 
 		"/addon/converse/converse.min.css" .'" media="all" />';
@@ -81,27 +81,26 @@ function converse_settings(&$a,&$s) {
 
 
 	if(is_site_admin()){
-		$sc .= replace_macros(get_markup_template('field_input.tpl'), array(
-					      '$field'	=> array('bosh_path', 
+		$sc .= replace_macros(get_markup_template('field_input.tpl'), 
+				      array('$field'	=> array('bosh_path', 
 								 t('Path to BOSH host.'), 
 								 $bosh_path, 
-								 t('Path to BOSH host.'))
-					      ));
-		$sc .= replace_macros(get_markup_template('field_input.tpl'), array(
-					      '$field'	=> array('websockets_path', 
+								 t('Path to BOSH host.'))));
+					      
+		$sc .= replace_macros(get_markup_template('field_input.tpl'), 
+				      array('$field'	=> array('websockets_path', 
 								 t('Path to websockets host.'), 
 								 $websockets_path, 
-								 t('Path to websockets host.'))
-					      ));
+								 t('Path to websockets host.'))));
 	}
 				      
 
-	$s .= replace_macros(get_markup_template('generic_addon_settings.tpl'), array(
-				     '$addon' 	=> array('converse',
+	$s .= replace_macros(get_markup_template('generic_addon_settings.tpl'), 
+			     array('$addon' 	=> array('converse',
 							 t('Converse Settings'),
 							 '', 
 							 t('Submit')),
-				     '$content'	=> $sc));
+				   '$content'	=> $sc));
 
 }
 
