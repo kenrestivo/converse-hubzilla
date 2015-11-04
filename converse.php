@@ -1,5 +1,14 @@
 <?php
 
+/**
+* Name: Converse XMPP Chat plugin
+* Description: Enables XMPP chat with Converse.js
+* Version: 1.0
+* Author: ken restivo <ken@restivo.org>
+*/
+
+
+
 
 function converse_load(){
 	register_hook('construct_page', 'addon/converse/converse.php', 'converse_content');
