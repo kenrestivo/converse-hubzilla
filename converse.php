@@ -34,7 +34,6 @@ function converse_content(&$a, &$b){
          */
 
 
-//converse.css themes.css
 	// head_add_js and head_add_css would be so much cleaner, but don't work here for some reason.
 	$a->page['htmlhead'] .=  '<link rel="stylesheet" href="' .   
 		$a->get_baseurl() . 
@@ -54,13 +53,15 @@ function converse_content(&$a, &$b){
 
 
 function converse_addon_settings(&$a,&$s) {
-	$bosh = get_config('converse','bosh_path');
-	$websockets = get_config('converse','websockets_path');
+	if(! local_channel())
+		return;
 
-	$enabled = get_pconfig(local_channel(),'randplace','enable');
+//	$bosh = get_config('converse','bosh_path');
+//	$websockets = get_config('converse','websockets_path');
+
+	$enabled = get_pconfig(local_channel(),'converse','enable');
    
-        $checked = (($enabled) ? ' checked="checked" ' : '');
-
+	$checked = (($enabled) ? 1 : false);
 
 
 	$sc .= replace_macros(get_markup_template('field_checkbox.tpl'), array(
@@ -82,7 +83,7 @@ function converse_addon_settings(&$a,&$s) {
 }
 
 
-function converse_settings_post($a,$post) {
+function converse_settings_post($a,&$req) {
         if(! local_channel()){
 		return;
 	}
