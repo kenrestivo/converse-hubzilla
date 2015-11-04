@@ -12,6 +12,9 @@
 
 function converse_load(){
 	register_hook('construct_page', 'addon/converse/converse.php', 'converse_content');
+	register_hook('feature_settings', 'addon/converse/converse.php', 'converse_settings');
+	register_hook('feature_settings_post', 'addon/converse/converse.php', 'converse_settings_post');
+
 }
 
 
@@ -21,6 +24,14 @@ function converse_unload(){
 
 
 function converse_content(&$a, &$b){
+
+	/* 
+         * $active = get_pconfig(local_channel(), 'converse', 'enable');
+	 * 
+         * if(! $active){
+	 * 	return;
+	 * }
+         */
 
 
 //converse.css themes.css
@@ -36,12 +47,53 @@ function converse_content(&$a, &$b){
 	foreach ($scripts as $js){
 		$a->page['htmlhead'] .=   '<script src="' .  
 			$a->get_baseurl() . '/addon/converse/'. $js . '"></script>';
-			
-			
 	}
+	// NOTE: there's no additional content necessary, the JS above loads everything needed.
 }
 
 
-function convese_module() {
-	return;
+
+function converse_addon_settings(&$a,&$s) {
+	$bosh = get_config('converse','bosh_path');
+	$websockets = get_config('converse','websockets_path');
+
+	$enabled = get_pconfig(local_channel(),'randplace','enable');
+   
+        $checked = (($enabled) ? ' checked="checked" ' : '');
+
+
+
+	$sc .= replace_macros(get_markup_template('field_checkbox.tpl'), array(
+				      '$field'	=> array('converse', 
+							 t('Enable Converse.js XMPP Chat Plugin'), 
+							 $checked, 
+							 '', 
+							 array(t('No'),
+							       t('Yes')))));
+				      
+
+	$s .= replace_macros(get_markup_template('generic_addon_settings.tpl'), array(
+				     '$addon' 	=> array('converse',
+							 t('Converse Settings'),
+							 '', 
+							 t('Submit')),
+				     '$content'	=> $sc));
+
 }
+
+
+function converse_settings_post($a,$post) {
+        if(! local_channel()){
+		return;
+	}
+
+	if($_POST['converse-submit']) {
+		set_pconfig(local_channel(),'converse','enable',intval($_POST['converse']));
+		info( t('Converse Settings updated.') . EOL);
+	}
+
+
+
+}
+
+
