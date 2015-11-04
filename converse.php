@@ -3,7 +3,7 @@
 /**
  * Name: Converse XMPP Chat plugin
  * Description: Enables XMPP chat with Converse.js
- * Version: 1.0
+ * Version: 0.1
  * Author: ken restivo <ken@restivo.org>
  */
 
