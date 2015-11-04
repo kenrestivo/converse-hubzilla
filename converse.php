@@ -30,6 +30,9 @@ function converse_content(&$a, &$b){
 		return;
 
 	$active = get_pconfig(local_channel(), 'converse', 'enable');
+	$bosh_path = get_config('converse','bosh_path');
+	$websockets_path = get_config('converse','websockets_path');
+
 	
         if(! $active){
 		return;
@@ -60,8 +63,8 @@ function converse_settings(&$a,&$s) {
 		return;
 
 
-//	$bosh = get_config('converse','bosh_path');
-//	$websockets = get_config('converse','websockets_path');
+	$bosh_path = get_config('converse','bosh_path');
+	$websockets_path = get_config('converse','websockets_path');
 
 	$enabled = get_pconfig(local_channel(),'converse','enable');
    
@@ -75,6 +78,22 @@ function converse_settings(&$a,&$s) {
 							 '', 
 							 array(t('No'),
 							       t('Yes')))));
+
+
+	if(is_site_admin()){
+		$sc .= replace_macros(get_markup_template('field_input.tpl'), array(
+					      '$field'	=> array('bosh_path', 
+								 t('Path to BOSH host.'), 
+								 $bosh_path, 
+								 t('Path to BOSH host.'))
+					      ));
+		$sc .= replace_macros(get_markup_template('field_input.tpl'), array(
+					      '$field'	=> array('websockets_path', 
+								 t('Path to websockets host.'), 
+								 $websockets_path, 
+								 t('Path to websockets host.'))
+					      ));
+	}
 				      
 
 	$s .= replace_macros(get_markup_template('generic_addon_settings.tpl'), array(
