@@ -25,6 +25,9 @@ function converse_unload(){
 
 
 function converse_content(&$a, &$b){
+	// chat's really only for us
+	if(! local_channel())
+		return;
 
 	$active = get_pconfig(local_channel(), 'converse', 'enable');
 	
