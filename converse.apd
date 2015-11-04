@@ -1,0 +1,3 @@
+url: $baseurl/converse
+name: Converse XMPP Chat
+photo: $baseurl/addon/converse/converse.png
