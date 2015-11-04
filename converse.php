@@ -114,8 +114,8 @@ function converse_settings_post($a,&$post) {
 	if($_POST['converse-submit']) {
 		set_pconfig(local_channel(),'converse','enable',intval($_POST['converse']));
 		info( t('Converse Settings updated.') . EOL);
-		set_config('converse','bosh_host',trim($_POST['bosh_host']));
-		set_config('converse','websockets_host',trim($_POST['websockets_host']));
+		set_config('converse','bosh_path',trim($_POST['bosh_path']));
+		set_config('converse','websockets_path',trim($_POST['websockets_path']));
 	}
 
 
