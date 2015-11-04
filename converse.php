@@ -21,8 +21,13 @@ function converse_unload(){
 
 
 function converse_content(&$a, &$b){
-	head_add_js($a->get_baseurl() . "/addon/converse/converse.min.js");
-	head_add_css($a->get_baseurl() . "/addon/converse/converse.min.css");
+	$a->page['htmlhead'] .=  '<link rel="stylesheet" href="' .   
+		$a->get_baseurl() . 
+		"/addon/converse/converse.min.js" .'" media="all" />';
+    
+	$a->page['htmlhead'] .=   '<script src="' . 
+		$a->get_baseurl() . '/addon/converse/converse.min.js' .
+		'"></script>';
 }
 
 
