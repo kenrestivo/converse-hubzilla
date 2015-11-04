@@ -73,14 +73,16 @@ function converse_settings(&$a,&$s) {
 
 	$sc .= replace_macros(get_markup_template('field_checkbox.tpl'), array(
 				      '$field'	=> array('converse', 
-							 t('Enable Converse.js XMPP Chat Plugin'), 
+							 t('Enable Converse.js XMPP Chat Plugin' .
+							   is_site_admin() ? "For the ADMIN user (does not affect other users)" : ""), 
 							 $checked, 
 							 '', 
 							 array(t('No'),
 							       t('Yes')))));
 
 
-	if(is_site_admin()){
+	if( is_site_admin() ){
+		logger("converse am admin");
 		$sc .= replace_macros(get_markup_template('field_input.tpl'), 
 				      array('$field' => array('bosh_path', 
 							      t('Path to BOSH host.'), 
