@@ -12,6 +12,7 @@
 
 function converse_load(){
 	register_hook('construct_page', 'addon/converse/converse.php', 'converse_content');
+
 	register_hook('feature_settings', 'addon/converse/converse.php', 'converse_settings');
 	register_hook('feature_settings_post', 'addon/converse/converse.php', 'converse_settings_post');
 
@@ -52,9 +53,11 @@ function converse_content(&$a, &$b){
 
 
 
-function converse_addon_settings(&$a,&$s) {
+function converse_settings(&$a,&$s) {
+
 	if(! local_channel())
 		return;
+
 
 //	$bosh = get_config('converse','bosh_path');
 //	$websockets = get_config('converse','websockets_path');
@@ -83,7 +86,7 @@ function converse_addon_settings(&$a,&$s) {
 }
 
 
-function converse_settings_post($a,&$req) {
+function converse_settings_post($a,&$post) {
         if(! local_channel()){
 		return;
 	}
