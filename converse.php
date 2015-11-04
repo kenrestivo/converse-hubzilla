@@ -45,8 +45,7 @@ function converse_content(&$a, &$b){
 		"/addon/converse/converse.min.css" .'" media="all" />';
 
 
-	$scripts = array("converse.nojquery.min.js",
-			 "chat.js");
+	$scripts = array("converse.nojquery.min.js", "chat.js");
 	
 	foreach ($scripts as $js){
 		$a->page['htmlhead'] .=   '<script src="' .  
