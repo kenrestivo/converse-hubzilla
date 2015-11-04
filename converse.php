@@ -32,7 +32,7 @@ function converse_content(&$a, &$b){
 	$active = get_pconfig(local_channel(), 'converse', 'enable');
 	$bosh_path = get_config('converse','bosh_path');
 	$websockets_path = get_config('converse','websockets_path');
-
+	// TODO: add domain placeholder
 	
         if(! $active){
 		return;
