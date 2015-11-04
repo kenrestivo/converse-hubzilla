@@ -60,7 +60,8 @@ function converse_content(&$a, &$b){
 			 "locales.js",
 			 "templates.js",
 			 "utils.js",
-			 "converse.js");
+			 "converse.js",
+			 "chat.js");
 	
 	foreach ($scripts as $js){
 		$a->page['htmlhead'] .=   '<script src="' .  
