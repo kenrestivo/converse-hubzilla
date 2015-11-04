@@ -1,0 +1,11 @@
+TODO for hubzilla converse plugin
+
+* TODO integrate better with hubzilla
+** TODO pull JID's from database
+*** jappix stuff, really
+** TODO possibly pull passwords from database, using the jappix SSL stuff
+** TODO autologin by default when those are there
+* TODO add settings for users/admins
+** TODO debug
+** TODO play_sounds
+** TODO show_controlbox_by_default

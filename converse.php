@@ -54,7 +54,8 @@ function converse_content(&$a, &$b){
 
 
 
-	/// ugly, but reliable
+	/// ugly, but reliable way to pass in settings to converse.
+	// vars documented here https://conversejs.org/docs/html/configuration.html
 	$a->page['content'] .= '<script language="javascript" type="text/javascript">' .
 		"require(['converse'], function (converse) {
     converse.initialize({
@@ -107,13 +108,13 @@ function converse_settings(&$a,&$s) {
 				      array('$field' => array('bosh_url', 
 							      t('Path to BOSH host.'), 
 							      $bosh_url, 
-							      t('Full path, with http:// or https://, and /http-bind at the end'))));
+							      t('Full URL, with http:// or https://, and /http-bind at the end'))));
 		$websockets_url = get_config('converse','websockets_url');
 		$sc .= replace_macros(get_markup_template('field_input.tpl'), 
 				      array('$field' => array('websockets_url', 
 							      t('Path to websockets host.'), 
 							      $websockets_url, 
-							      t('Full path, with ws:// or wsss://, and websocket or whatever at the end'))));
+							      t('Full URL, with ws:// or wsss://, and websocket or whatever at the end'))));
 	}
 				      
 
