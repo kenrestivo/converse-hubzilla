@@ -59,9 +59,9 @@ function converse_content(&$a, &$b){
 	$a->page['content'] .= '<script language="javascript" type="text/javascript">' .
 		"require(['converse'], function (converse) {
     converse.initialize({
-	bosh_service_url: '$bosh_url/',
-	websocket_url: '$websockets_url/',
-	//domain_placeholder: '', /// TODO add to settings
+	bosh_service_url: '$bosh_url/'," .
+		(($websockets_url !== '') ? "websocket_url: '$websockets_url/' , " : "") .
+		"//domain_placeholder: '', /// TODO add to settings
 	keepalive: true,
 	animate: false,
 	autologin: false, // will be true once jid is populated, WHEN it is populated
