@@ -106,13 +106,13 @@ function converse_settings(&$a,&$s) {
 		$bosh_url = get_config('converse','bosh_url');
 		$sc .= replace_macros(get_markup_template('field_input.tpl'), 
 				      array('$field' => array('bosh_url', 
-							      t('Path to BOSH host.'), 
+							      t('URL to BOSH host.'), 
 							      $bosh_url, 
 							      t('Full URL, with http:// or https://, and /http-bind at the end'))));
 		$websockets_url = get_config('converse','websockets_url');
 		$sc .= replace_macros(get_markup_template('field_input.tpl'), 
 				      array('$field' => array('websockets_url', 
-							      t('Path to websockets host.'), 
+							      t('URL to websockets host.  Leave blank to not use Websockets.'), 
 							      $websockets_url, 
 							      t('Full URL, with ws:// or wsss://, and websocket or whatever at the end'))));
 	}
