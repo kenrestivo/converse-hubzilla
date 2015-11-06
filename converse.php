@@ -44,14 +44,9 @@ function converse_content(&$a, &$b){
 		$a->get_baseurl() . 
 		"/addon/converse/converse.min.css" .'" media="all" />';
 
-
-	$scripts = array("converse.nojquery.min.js");
 	
-	foreach ($scripts as $js){
-		$a->page['htmlhead'] .=   '<script src="' .  
-			$a->get_baseurl() . '/addon/converse/'. $js . '"></script>';
-	}
-
+	$a->page['htmlhead'] .=   '<script src="' .  
+		$a->get_baseurl() . '/addon/converse/'. "converse.nojquery.min.js" . '"></script>';
 
 
 	/// ugly, but reliable way to pass in settings to converse.

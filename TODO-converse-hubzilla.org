@@ -2,10 +2,17 @@ TODO for hubzilla converse plugin
 
 * TODO integrate better with hubzilla
 ** TODO pull JID's from database
-*** jappix stuff, really
+*** if there's a jappix id and password, pull it in
+*** save it as converse_jid and converse_pass etc
 ** TODO possibly pull passwords from database, using the jappix SSL stuff
+** possibly pull in the jappix/converse ids of friends
+*** TODO would have to figure out a way to add them though.
 ** TODO autologin by default when those are there
 * TODO add settings for users/admins
 ** TODO debug
 ** TODO play_sounds
 ** TODO show_controlbox_by_default
+* usability
+** TODO hide ALL the settings and have sane defaults
+** TODO automatically generate a jabber account for all new users and add it to the db
+*** AND register them on the server (wil require some server integration)
