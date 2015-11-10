@@ -206,6 +206,7 @@ function converse_init(&$a) {
 				      "animate" => false,
 				      'jid' => $username . '@' . $domain, /// XXX resource needed TODO
 				      "authentication" => 'prebind',
+				      'allow_registration' => false,
 				      "autologin" => true,
 				      "message_carbons" => true,
 				      "debug" => false,  // TODO add to settings (pconfig? config?)
