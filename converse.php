@@ -81,7 +81,7 @@ function converse_settings(&$a,&$s) {
 	$checked = (($enabled) ? 1 : false);
 
 	if(is_site_admin()){
-		$msg = "Enable/disable for the ADMIN user (does not affect other users)";
+		$msg = " for the ADMIN user (does not affect other users)";
 	}
 	
 	$sc .= replace_macros(get_markup_template('field_checkbox.tpl'), array(
