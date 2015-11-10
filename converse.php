@@ -159,7 +159,6 @@ function converse_content(&$a){
 
 
 function prebind(){
-	/// XXX holder
 
 	$username = get_pconfig(local_channel(),'converse','username');
 	$password = get_pconfig(local_channel(),'converse','password');
@@ -172,6 +171,10 @@ function prebind(){
 				 'converse-hubzilla', // TODO: must have unique per session?
 				 ((strpos($bosh_url, 'https://') > 0) ? true : false));
 	$xmppBosh->connect($username, $password);
+
+	// TODO: madness. cache these sesssion id's, don't keep going tback to the server for them
+	// PROBLEM: how to know when a new one must be fetched? what'll happen?
+
 	return $xmppBosh->getSessionInfo();
 
 }
