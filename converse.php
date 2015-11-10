@@ -158,6 +158,11 @@ function converse_content(&$a){
 }
 
 
+
+/*
+  It looks like the CLIENT caches the sid and rid, so there's no need to save them
+  in the database on the server. It'll hit the prebind url when it needs to refresh.
+ */
 function prebind(){
 
 	$username = get_pconfig(local_channel(),'converse','username');
@@ -172,8 +177,6 @@ function prebind(){
 				 ((strpos($bosh_url, 'https://') > 0) ? true : false));
 	$xmppBosh->connect($username, $password);
 
-	// TODO: madness. cache these sesssion id's, don't keep going tback to the server for them
-	// PROBLEM: how to know when a new one must be fetched? what'll happen?
 
 	return $xmppBosh->getSessionInfo();
 
