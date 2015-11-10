@@ -99,9 +99,9 @@ function converse_settings(&$a,&$s) {
 						      $username, 
 						      t('Jabber username'))));
 
-	$sc .= replace_macros(get_markup_template('field_input.tpl'), 
+	$sc .= replace_macros(get_markup_template('field_password.tpl'), 
 			      array('$field' => array('password', 
-						      t('Password (with no @)'), 
+						      t('Password (stored in plaintext for now)'), 
 						      $password, 
 						      t('Jabber password'))));
 
