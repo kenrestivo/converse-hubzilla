@@ -36,7 +36,6 @@ function converse_all_pages(&$a, &$b){
 		return;
 	}
 
-
 	// ugly. head_add_js and head_add_css would be so much cleaner, but don't work here for some reason?
 	$a->page['htmlhead'] .=  '<link rel="stylesheet" href="' .   
 		$a->get_baseurl() . 
@@ -47,7 +46,6 @@ function converse_all_pages(&$a, &$b){
 		$a->get_baseurl() . '/addon/converse/'. "converse.nojquery.min.js" . '"></script>';
 
 
-	/// ugly, but reliable way to pass in settings to converse.
 	// vars documented here https://conversejs.org/docs/html/configuration.html
 	$a->page['content'] .= '<script language="javascript" type="text/javascript">' .
 		"require(['converse'], function (converse) {
@@ -60,8 +58,7 @@ function converse_all_pages(&$a, &$b){
                  }})});" .
 		'</script>';
 	// NOTE: there's no additional content necessary, the JS above loads everything needed.
-	
-	//$a->page['content'] .=  "foooo";
+
 }
 
 
@@ -83,11 +80,13 @@ function converse_settings(&$a,&$s) {
    
 	$checked = (($enabled) ? 1 : false);
 
-
+	if(is_site_admin()){
+		$msg = "Enable/disable for the ADMIN user (does not affect other users)";
+	}
+	
 	$sc .= replace_macros(get_markup_template('field_checkbox.tpl'), array(
 				      '$field'	=> array('enable', 
-							 t('Enable Converse.js XMPP Chat Plugin' .
-							   is_site_admin() ? "Enable/disable for the ADMIN user (does not affect other users)" : ""), 
+							 t('Enable Converse.js XMPP Chat Plugin' . $msg),
 							 $checked, 
 							 '', 
 							 array(t('No'),
@@ -200,7 +199,6 @@ function converse_init(&$a) {
 			$username = get_pconfig(local_channel(), 'converse', 'username');
 			json_return_and_die(
 				array("bosh_service_url" => $bosh_url,
-				      // "domain_placeholder" => '' /// TODO add to settings
 				      "keepalive" => true,
 				      "prebind_url" =>  $a->get_baseurl() . '/converse/prebind',
 				      "animate" => false,
