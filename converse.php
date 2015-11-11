@@ -20,7 +20,10 @@ function converse_load(){
 
 
 function converse_unload(){
-	unregister_hook('construct_page', 'addon/converse/converse.php', 'converse_content');
+	unregister_hook('construct_page', 'addon/converse/converse.php', 'converse_all_pages');
+
+	unregister_hook('feature_settings', 'addon/converse/converse.php', 'converse_settings');
+	unregister_hook('feature_settings_post', 'addon/converse/converse.php', 'converse_settings_post');
 }
 
 
@@ -138,11 +141,15 @@ function converse_settings_post($a,&$post) {
         if(! local_channel())
 		return;
 
+	// TODO: check validity of username/password now, before saving
+
 	set_pconfig(local_channel(),'converse','enable',intval($_POST['enable']));
 	set_pconfig(local_channel(),'converse','username',$_POST['username']);
 	set_pconfig(local_channel(),'converse','password',$_POST['password']);
+
 	
 	if(is_site_admin() && $_POST['converse-submit']) {
+		// TODO: check validity of bosh url, before saving
 		set_config('converse','domain',trim($_POST['domain']));
 		set_config('converse','bosh_url',trim($_POST['bosh_url']));
 		info( t('Converse Settings updated.') . EOL);
