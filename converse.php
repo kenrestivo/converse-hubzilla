@@ -21,6 +21,9 @@ function converse_load(){
 
 function converse_unload(){
 	unregister_hook('construct_page', 'addon/converse/converse.php', 'converse_content');
+
+	unregister_hook('feature_settings', 'addon/converse/converse.php', 'converse_settings');
+	unregister_hook('feature_settings_post', 'addon/converse/converse.php', 'converse_settings_post');
 }
 
 
