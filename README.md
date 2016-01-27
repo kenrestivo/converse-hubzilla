@@ -1,6 +1,7 @@
 Converse.js plugin
 ===============
 
+# This plugin is deprecated. Hubzilla includes an XMPP plugin by default now; use that one instead.
 
 Integrates [converse.js](https://conversejs.org). with [Hubzilla](https://github.com/redmatrix/hubzilla)
 
